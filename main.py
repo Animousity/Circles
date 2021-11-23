@@ -1,15 +1,15 @@
 import sys
 import random
 
-from PyQt5 import uic
+from UI import WindowSample
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel
 
 
-class Circles(QWidget):
+class Circles(QWidget, WindowSample):
     def __init__(self):
         super().__init__()
         self.circle = QLabel(self)
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.pushButton.clicked.connect(self.createCircles)
 
     def createCircles(self):
@@ -17,7 +17,7 @@ class Circles(QWidget):
         y = random.choice(range(650))
         side = random.choice(range(650))
         self.circle.setGeometry(x, y, side, side)
-        self.circle.setStyleSheet(f'border-radius: {side // 2}; background-color: #ffff00;')
+        self.circle.setStyleSheet(f'border-radius: {side // 2}; background-color: rgb({random.choice(range(256))}, {random.choice(range(256))}, {random.choice(range(256))});')
         self.circle.show()
 
 
